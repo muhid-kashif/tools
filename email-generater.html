@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free temporary email generator - Create disposable email addresses instantly to protect your privacy. No registration required.">
+    <meta name="keywords" content="temp email, disposable email, fake email, temporary mailbox, spam protection">
+    <meta name="author" content="TempMail Generator">
+    <meta property="og:title" content="Free Temporary Email Generator">
+    <meta property="og:description" content="Create disposable email addresses instantly to protect your privacy.">
+    <meta property="og:type" content="website">
+    <meta name="robots" content="index, follow">
+    <title>Temporary Email Generator - Free Disposable Email Address</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #f8f9fa;
+            --dark-color: #343a40;
+            --light-color: #ffffff;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--light-color);
+            box-shadow: var(--shadow);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--dark-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7ff 0%, #e8ecff 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .ad-container {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px dashed #ccc;
+        }
+
+        .ad-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .email-generator {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .email-display {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .email-display {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+
+        .email-address {
+            flex-grow: 1;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 18px;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .email-address {
+                margin-bottom: 0;
+                margin-right: 10px;
+            }
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #3a5bef;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e9ecef;
+        }
+
+        .btn-icon {
+            margin-right: 8px;
+        }
+
+        .email-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        @media (min-width: 768px) {
+            .email-controls {
+                flex-wrap: nowrap;
+            }
+        }
+
+        .inbox-container {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .inbox-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .inbox-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .refresh-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .refresh-btn i {
+            margin-right: 5px;
+        }
+
+        .message-list {
+            list-style: none;
+        }
+
+        .message-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .message-item:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .message-item.unread {
+            background-color: #f0f7ff;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .message-sender {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .message-time {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .message-subject {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .message-preview {
+            color: #666;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .message-content {
+            display: none;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            border-radius: var(--border-radius);
+            margin-top: 10px;
+        }
+
+        .message-content.active {
+            display: block;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .feature-desc {
+            color: #666;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--light-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--light-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 14px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+                margin-top: 15px;
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 0;
+                margin-bottom: 10px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .email-controls {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Temp<span>Mail</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Free Temporary Email Generator</h1>
+            <p>Protect your privacy with our disposable email service. Create instant temporary email addresses to avoid spam and keep your personal inbox clean.</p>
+            
+            <!-- Ad Container Top -->
+            <div class="ad-container">
+                <div class="ad-label">Advertisement</div>
+                <!-- Replace with your Google AdSense code -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                     crossorigin="anonymous"></script>
+                <!-- Your Ad Unit -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                     data-ad-slot="YOUR_AD_SLOT_ID"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="email-generator">
+            <div class="email-display">
+                <div class="email-address" id="emailAddress">Click "Generate Email" to create an address</div>
+                <div class="email-controls">
+                    <button class="btn btn-primary" id="generateBtn">
+                        <i class="fas fa-plus-circle btn-icon"></i> Generate Email
+                    </button>
+                    <button class="btn btn-secondary tooltip" id="copyBtn" disabled>
+                        <i class="far fa-copy btn-icon"></i> Copy
+                        <span class="tooltiptext">Copy to clipboard</span>
+                    </button>
+                </div>
+            </div>
+            <div class="email-controls">
+                <button class="btn btn-secondary" id="refreshBtn" disabled>
+                    <i class="fas fa-sync-alt btn-icon"></i> Refresh Inbox
+                </button>
+                <button class="btn btn-secondary" id="deleteBtn" disabled>
+                    <i class="fas fa-trash-alt btn-icon"></i> Delete Email
+                </button>
+            </div>
+        </section>
+
+        <!-- Middle Ad Container -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Replace with your Google AdSense code -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                 crossorigin="anonymous"></script>
+            <!-- Your Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <section class="inbox-container" id="inboxContainer" style="display: none;">
+            <div class="inbox-header">
+                <h2 class="inbox-title">Inbox</h2>
+                <button class="refresh-btn" id="inboxRefreshBtn">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+            <ul class="message-list" id="messageList">
+                <!-- Messages will appear here dynamically -->
+                <li class="message-item empty-inbox">
+                    <div class="message-preview">Your inbox is empty. Waiting for new messages...</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="features" id="how-it-works">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Privacy Protection</h3>
+                <p class="feature-desc">Keep your personal email private and avoid spam with our disposable email addresses.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">Instant Creation</h3>
+                <p class="feature-desc">Generate temporary email addresses instantly with just one click, no registration required.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+                <h3 class="feature-title">Real-time Inbox</h3>
+                <p class="feature-desc">View incoming messages in real-time without revealing your personal information.</p>
+            </div>
+        </section>
+
+        <!-- Bottom Ad Container -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Replace with your Google AdSense code -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+                 crossorigin="anonymous"></script>
+            <!-- Your Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_PUBLISHER_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TempMail</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Privacy Tools</a></li>
+                        <li><a href="#">Security Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; <span id="currentYear"></span> TempMail Generator. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Email generation functionality
+        const generateBtn = document.getElementById('generateBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const deleteBtn = document.getElementById('deleteBtn');
+        const emailAddress = document.getElementById('emailAddress');
+        const inboxContainer = document.getElementById('inboxContainer');
+        const messageList = document.getElementById('messageList');
+        const inboxRefreshBtn = document.getElementById('inboxRefreshBtn');
+
+        // Sample domains for email generation
+        const domains = [
+            'tempmailgen.com',
+            'disposableinbox.com',
+            'mailtemp.net',
+            'fakemail.ws',
+            'throwawaymail.com'
+        ];
+
+        // Generate random string for email username
+        function generateRandomString(length) {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        // Generate random email
+        function generateEmail() {
+            const username = generateRandomString(10);
+            const domain = domains[Math.floor(Math.random() * domains.length)];
+            return `${username}@${domain}`;
+        }
+
+        // Current email data
+        let currentEmail = null;
+        let messages = [];
+
+        // Generate new email
+        generateBtn.addEventListener('click', function() {
+            currentEmail = generateEmail();
+            emailAddress.textContent = currentEmail;
+            copyBtn.disabled = false;
+            refreshBtn.disabled = false;
+            deleteBtn.disabled = false;
+            inboxContainer.style.display = 'block';
+            messages = [];
+            renderMessages();
+            
+            // Simulate loading
+            this.innerHTML = '<span class="spinner"></span> Generating...';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-plus-circle btn-icon"></i> Generate Email';
+            }, 800);
+        });
+
+        // Copy email to clipboard
+        copyBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(currentEmail).then(() => {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check btn-icon"></i> Copied!';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 2000);
+            });
+        });
+
+        // Refresh inbox
+        function refreshInbox() {
+            if (!currentEmail) return;
+            
+            // Simulate API call to check for new messages
+            refreshBtn.innerHTML = '<span class="spinner"></span> Refreshing...';
+            inboxRefreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refreshing...';
+            
+            setTimeout(() => {
+                // Random chance to get a new message (for demo purposes)
+                if (Math.random() > 0.7) {
+                    const newMessage = {
+                        id: Date.now(),
+                        sender: ['noreply@service.com', 'newsletter@company.org', 'support@platform.io'][Math.floor(Math.random() * 3)],
+                        subject: ['Your account verification', 'Weekly newsletter', 'Password reset', 'Special offer'][Math.floor(Math.random() * 4)],
+                        content: 'This is a sample message content. In a real application, this would be the actual email content received by the temporary email address.',
+                        time: new Date().toLocaleTimeString(),
+                        isRead: false
+                    };
+                    messages.unshift(newMessage);
+                    renderMessages();
+                    
+                    // Show notification for new message
+                    if (Notification.permission === 'granted') {
+                        new Notification(`New message: ${newMessage.subject}`, {
+                            body: `From: ${newMessage.sender}`
+                        });
+                    }
+                }
+                
+                refreshBtn.innerHTML = '<i class="fas fa-sync-alt btn-icon"></i> Refresh Inbox';
+                inboxRefreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh';
+            }, 1000);
+        }
+
+        refreshBtn.addEventListener('click', refreshInbox);
+        inboxRefreshBtn.addEventListener('click', refreshInbox);
+
+        // Delete email
+        deleteBtn.addEventListener('click', function() {
+            currentEmail = null;
+            emailAddress.textContent = 'Click "Generate Email" to create an address';
+            copyBtn.disabled = true;
+            refreshBtn.disabled = true;
+            deleteBtn.disabled = true;
+            inboxContainer.style.display = 'none';
+            messages = [];
+        });
+
+        // Render messages in inbox
+        function renderMessages() {
+            if (messages.length === 0) {
+                messageList.innerHTML = '<li class="message-item empty-inbox"><div class="message-preview">Your inbox is empty. Waiting for new messages...</div></li>';
+                return;
+            }
+            
+            messageList.innerHTML = '';
+            messages.forEach(message => {
+                const li = document.createElement('li');
+                li.className = `message-item ${message.isRead ? '' : 'unread'}`;
+                li.innerHTML = `
+                    <div class="message-header">
+                        <div class="message-sender">${message.sender}</div>
+                        <div class="message-time">${message.time}</div>
+                    </div>
+                    <div class="message-subject">${message.subject}</div>
+                    <div class="message-preview">${message.content.substring(0, 100)}...</div>
+                    <div class="message-content">${message.content}</div>
+                `;
+                li.addEventListener('click', function() {
+                    message.isRead = true;
+                    li.classList.remove('unread');
+                    const content = this.querySelector('.message-content');
+                    content.classList.toggle('active');
+                });
+                messageList.appendChild(li);
+            });
+        }
+
+        // Request notification permission
+        if (Notification.permission !== 'denied') {
+            Notification.requestPermission();
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Check for existing email in URL (for bookmarking)
+        const urlParams = new URLSearchParams(window.location.search);
+        const savedEmail = urlParams.get('email');
+        if (savedEmail) {
+            currentEmail = savedEmail;
+            emailAddress.textContent = currentEmail;
+            copyBtn.disabled = false;
+            refreshBtn.disabled = false;
+            deleteBtn.disabled = false;
+            inboxContainer.style.display = 'block';
+            
+            // Simulate loading some messages
+            setTimeout(() => {
+                messages = [
+                    {
+                        id: 1,
+                        sender: 'welcome@tempmailgen.com',
+                        subject: 'Welcome to TempMail Generator',
+                        content: 'Thank you for using our temporary email service. This address will be active for 24 hours. You can refresh this page to check for new messages.',
+                        time: new Date().toLocaleTimeString(),
+                        isRead: true
+                    }
+                ];
+                renderMessages();
+            }, 500);
+        }
+    </script>
+
+    <!-- Structured data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "TempMail Generator",
+        "description": "Free temporary email generator service that creates disposable email addresses to protect your privacy.",
+        "url": "https://tempmailgenerator.example.com",
+        "applicationCategory": "Utilities",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "TempMail"
+        }
+    }
+    </script>
+</body>
+</html>
