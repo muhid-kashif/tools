@@ -1,811 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GhoSTLy ID - Free disposable temporary phone number service. Create instant anonymous phone numbers for verification and protect your privacy.">
-    <meta name="keywords" content="temporary phone number, disposable phone number, fake phone number, anonymous phone, phone verification, ghostly id">
-    <title>GhoSTLy ID - Free Temporary Disposable Phone Number Generator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
-    <style>
-        :root {
-            --primary: #1a1a1a;
-            --secondary: #2a2a2a;
-            --accent: #6a1b9a;
-            --text: #e0e0e0;
-            --text-secondary: #b0b0b0;
-            --highlight: #8e24aa;
-            --success: #4caf50;
-            --danger: #f44336;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--primary);
-            color: var(--text);
-            line-height: 1.6;
-            font-size: 18px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: var(--secondary);
-            padding: 25px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .logo {
-            font-size: 3rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, var(--accent), var(--highlight));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .logo span {
-            color: var(--highlight);
-        }
-        
-        .tagline {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .ad-banner {
-            background-color: var(--secondary);
-            padding: 20px;
-            margin: 25px 0;
-            text-align: center;
-            border-radius: 5px;
-        }
-        
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin: 35px 0;
-        }
-        
-        .number-generator {
-            background-color: var(--secondary);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .number-display {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        
-        .number-input {
-            flex: 1;
-            min-width: 300px;
-            padding: 15px 20px;
-            background-color: var(--primary);
-            border: 1px solid #444;
-            border-radius: 5px;
-            color: var(--text);
-            font-size: 1.2rem;
-        }
-        
-        .country-selector {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        
-        .country-dropdown {
-            position: relative;
-            min-width: 250px;
-        }
-        
-        .country-dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 20px;
-            background-color: var(--primary);
-            border: 1px solid #444;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
-        
-        .country-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            max-height: 300px;
-            overflow-y: auto;
-            background-color: var(--primary);
-            border: 1px solid #444;
-            border-radius: 5px;
-            z-index: 100;
-            display: none;
-        }
-        
-        .country-dropdown.open .country-dropdown-menu {
-            display: block;
-        }
-        
-        .country-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 15px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        
-        .country-item:hover {
-            background-color: #333;
-        }
-        
-        .btn {
-            padding: 15px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-        }
-        
-        .btn-primary {
-            background-color: var(--accent);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--highlight);
-        }
-        
-        .btn-secondary {
-            background-color: #444;
-            color: var(--text);
-        }
-        
-        .btn-secondary:hover {
-            background-color: #555;
-        }
-        
-        .btn-success {
-            background-color: var(--success);
-            color: white;
-        }
-        
-        .inbox-container {
-            background-color: var(--secondary);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .inbox-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #444;
-            font-size: 1.3rem;
-        }
-        
-        .refresh-btn {
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-        
-        .message-list {
-            list-style: none;
-        }
-        
-        .message-item {
-            padding: 20px;
-            margin-bottom: 15px;
-            background-color: var(--primary);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 1.1rem;
-        }
-        
-        .message-item:hover {
-            background-color: #333;
-        }
-        
-        .message-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        
-        .message-sender {
-            font-weight: 600;
-        }
-        
-        .message-time {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-        
-        .message-subject {
-            font-weight: 500;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .message-preview {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .message-content {
-            display: none;
-            padding: 20px;
-            margin-top: 15px;
-            background-color: #252525;
-            border-radius: 5px;
-            white-space: pre-wrap;
-            font-size: 1.1rem;
-        }
-        
-        .active .message-content {
-            display: block;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 35px 0;
-        }
-        
-        .feature-card {
-            background-color: var(--secondary);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-        
-        .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .feature-description {
-            font-size: 1.1rem;
-        }
-        
-        footer {
-            background-color: var(--secondary);
-            padding: 40px 0;
-            text-align: center;
-            margin-top: 50px;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-        }
-        
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--text);
-        }
-        
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-        
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .number-display {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            body {
-                font-size: 16px;
-            }
-        }
-        
-        /* Tooltip styles */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 140px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 8px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -70px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 1rem;
-        }
-        
-        .tooltip .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
-        
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        /* Loading spinner */
-        .spinner {
-            display: none;
-            width: 25px;
-            height: 25px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Country flag size */
-        .flag-icon {
-            width: 1.5em;
-            height: 1.5em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ghostly ID - Free disposable phone number generator. Instantly generate fake phone numbers for any country with one click.">
+  <meta name="keywords" content="temporary phone number, fake phone number, disposable number, ghostly id">
+  <meta name="author" content="Ghostly ID">
+  <title>Ghostly ID - Temporary Phone Number Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d0d;
+      color: #e0e0ff;
+    }
+    header {
+      background: #1a001a;
+      padding: 1rem;
+      text-align: center;
+    }
+    header h1 {
+      color: #b366ff;
+      margin: 0;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #1a001a;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(179, 102, 255, 0.3);
+    }
+    label, select, button {
+      display: block;
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+    select, button {
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: none;
+    }
+    select {
+      background: #2a0030;
+      color: #fff;
+    }
+    button {
+      background: #b366ff;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #9933ff;
+    }
+    .result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #2a0030;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    .copy-btn {
+      margin-top: 0.5rem;
+      background: #6600cc;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background: #4d0099;
+    }
+    .adsense {
+      margin: 2rem 0;
+      text-align: center;
+      background: #0d0d0d;
+      padding: 1rem;
+      border: 1px dashed #b366ff;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #1a001a;
+      color: #888;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">G<span>hoSTL</span>y ID</div>
-            <p class="tagline">Your ghost identity for temporary phone number needs</p>
-        </div>
-    </header>
-    
-    <div class="container">
-        <!-- Ad Banner Top -->
-        <div class="ad-banner">
-            <!-- Replace with your Google AdSense code -->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"></script>
-            <!-- Your Ad Unit -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
-                 data-ad-slot="YOUR_AD_SLOT_ID"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        
-        <div class="main-content">
-            <div class="number-generator">
-                <h2 style="font-size: 1.8rem;">Generate Temporary Phone Number</h2>
-                <p style="font-size: 1.2rem;">Create a disposable phone number instantly to protect your privacy</p>
-                
-                <div class="country-selector">
-                    <div style="font-size: 1.2rem;">Select Country:</div>
-                    <div class="country-dropdown" id="country-dropdown">
-                        <div class="country-dropdown-toggle">
-                            <span class="flag-icon flag-icon-us"></span>
-                            <span class="country-name">United States</span>
-                            <i class="fas fa-chevron-down" style="margin-left: auto;"></i>
-                        </div>
-                        <div class="country-dropdown-menu" id="country-menu">
-                            <!-- Countries will be added here by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="number-display">
-                    <input type="text" id="generated-number" class="number-input" readonly placeholder="Your temporary number will appear here">
-                    <button id="generate-btn" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Generate
-                    </button>
-                    <button id="copy-btn" class="btn btn-secondary tooltip">
-                        <i class="fas fa-copy"></i> Copy
-                        <span class="tooltiptext">Copy to clipboard</span>
-                    </button>
-                </div>
-                
-                <div class="number-actions">
-                    <button id="refresh-btn" class="btn btn-secondary">
-                        <i class="fas fa-sync-alt"></i> Refresh Inbox
-                    </button>
-                    <span id="number-status" style="margin-left: 20px; color: var(--text-secondary); font-size: 1.1rem;"></span>
-                </div>
-            </div>
-            
-            <!-- Middle Ad Banner -->
-            <div class="ad-banner">
-                <!-- Another Ad Unit -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"></script>
-                <!-- Your Ad Unit -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-YOUR_ADSENSE_ID"
-                     data-ad-slot="YOUR_AD_SLOT_ID"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
-            
-            <div class="inbox-container">
-                <div class="inbox-header">
-                    <h3>Received Messages</h3>
-                    <button id="inbox-refresh" class="refresh-btn">
-                        <i class="fas fa-sync-alt"></i>
-                    </button>
-                </div>
-                
-                <ul class="message-list" id="message-list">
-                    <li class="empty-inbox">No messages yet. Your temporary number is ready to receive SMS.</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-user-secret"></i>
-                </div>
-                <h3 class="feature-title">Complete Anonymity</h3>
-                <p class="feature-description">Protect your real phone number from spam and keep your identity private with our disposable number service.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-globe-americas"></i>
-                </div>
-                <h3 class="feature-title">Global Numbers</h3>
-                <p class="feature-description">Get numbers from different countries to bypass regional restrictions and verification requirements.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3 class="feature-title">Secure & Private</h3>
-                <p class="feature-description">All numbers and messages are automatically deleted after 24 hours. We don't store your personal information.</p>
-            </div>
-        </div>
-        
-        <!-- Bottom Ad Banner -->
-        <div class="ad-banner">
-            <!-- Another Ad Unit -->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"></script>
-            <!-- Your Ad Unit -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
-                 data-ad-slot="YOUR_AD_SLOT_ID"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
+  <header>
+    <h1>Ghostly ID - Temporary Phone Number Generator</h1>
+  </header>
+  <main>
+    <label for="country">Select Country:</label>
+    <select id="country">
+      <option value="us">United States</option>
+      <option value="uk">United Kingdom</option>
+      <option value="ca">Canada</option>
+      <option value="au">Australia</option>
+      <option value="pk">Pakistan</option>
+      <option value="in">India</option>
+    </select>
+    <button onclick="generatePhone()">Generate Phone Number</button>
+
+    <div id="result" class="result" style="display:none;"></div>
+
+    <div class="adsense">
+      <!-- Google AdSense Code -->
+      <!-- Replace with your AdSense code -->
+      <p>Advertisement Space</p>
     </div>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact</a>
-                <a href="#">FAQ</a>
-            </div>
-            <p class="copyright">© 2023 GhoSTLy ID. All rights reserved.</p>
-        </div>
-    </footer>
-    
-    <script>
-        // DOM Elements
-        const generateBtn = document.getElementById('generate-btn');
-        const copyBtn = document.getElementById('copy-btn');
-        const refreshBtn = document.getElementById('refresh-btn');
-        const inboxRefresh = document.getElementById('inbox-refresh');
-        const numberInput = document.getElementById('generated-number');
-        const messageList = document.getElementById('message-list');
-        const numberStatus = document.getElementById('number-status');
-        const countryDropdown = document.getElementById('country-dropdown');
-        const countryMenu = document.getElementById('country-menu');
-        const countryToggle = countryDropdown.querySelector('.country-dropdown-toggle');
-        const countryName = countryToggle.querySelector('.country-name');
-        
-        // Country data with country codes and sample phone number formats
-        const countries = [
-            { code: 'us', name: 'United States', prefix: '+1', format: '(XXX) XXX-XXXX' },
-            { code: 'gb', name: 'United Kingdom', prefix: '+44', format: 'XXXX XXX XXX' },
-            { code: 'ca', name: 'Canada', prefix: '+1', format: '(XXX) XXX-XXXX' },
-            { code: 'au', name: 'Australia', prefix: '+61', format: 'X XXX XXX XXX' },
-            { code: 'de', name: 'Germany', prefix: '+49', format: 'XXXX XXXXXXX' },
-            { code: 'fr', name: 'France', prefix: '+33', format: 'X XX XX XX XX' },
-            { code: 'in', name: 'India', prefix: '+91', format: 'XXXXX XXXXX' },
-            { code: 'br', name: 'Brazil', prefix: '+55', format: '(XX) XXXXX-XXXX' },
-            { code: 'jp', name: 'Japan', prefix: '+81', format: 'XX-XXXX-XXXX' },
-            { code: 'ru', name: 'Russia', prefix: '+7', format: '(XXX) XXX-XX-XX' }
-        ];
-        
-        let selectedCountry = countries[0];
-        
-        // Generate random digits for phone number
-        function generateRandomDigits(format) {
-            let result = '';
-            for (let i = 0; i < format.length; i++) {
-                if (format[i] === 'X') {
-                    result += Math.floor(Math.random() * 10);
-                } else {
-                    result += format[i];
-                }
-            }
-            return result;
-        }
-        
-        // Generate a new temporary phone number
-        function generateNumber() {
-            const formattedNumber = generateRandomDigits(selectedCountry.format);
-            const fullNumber = `${selectedCountry.prefix} ${formattedNumber}`;
-            numberInput.value = fullNumber;
-            numberStatus.textContent = 'New number generated!';
-            numberStatus.style.color = 'var(--success)';
-            
-            // Clear the inbox when new number is generated
-            messageList.innerHTML = '<li class="empty-inbox">No messages yet. Your temporary number is ready to receive SMS.</li>';
-            
-            // In a real implementation, you would connect to your SMS service API here
-            // For demo purposes, we'll simulate receiving messages after a delay
-            setTimeout(simulateIncomingMessages, 3000);
-        }
-        
-        // Copy number to clipboard
-        function copyNumber() {
-            if (!numberInput.value) {
-                numberStatus.textContent = 'Generate a number first!';
-                numberStatus.style.color = 'var(--danger)';
-                return;
-            }
-            
-            numberInput.select();
-            document.execCommand('copy');
-            
-            // Change button temporarily to show success
-            const originalHTML = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-            copyBtn.classList.add('btn-success');
-            
-            setTimeout(() => {
-                copyBtn.innerHTML = originalHTML;
-                copyBtn.classList.remove('btn-success');
-            }, 2000);
-        }
-        
-        // Simulate checking for new messages
-        function checkMessages() {
-            if (!numberInput.value) {
-                numberStatus.textContent = 'Generate a number first!';
-                numberStatus.style.color = 'var(--danger)';
-                return;
-            }
-            
-            numberStatus.textContent = 'Checking for new messages...';
-            
-            // Show loading spinner
-            const spinner = document.createElement('div');
-            spinner.className = 'spinner';
-            numberStatus.appendChild(spinner);
-            spinner.style.display = 'inline-block';
-            spinner.style.marginLeft = '10px';
-            
-            // In a real implementation, this would be an API call
-            setTimeout(() => {
-                spinner.style.display = 'none';
-                numberStatus.textContent = 'Inbox refreshed';
-                numberStatus.style.color = 'var(--text-secondary)';
-                
-                // For demo, we'll sometimes add a new message
-                if (Math.random() > 0.7 && messageList.querySelector('.empty-inbox')) {
-                    simulateIncomingMessages();
-                }
-            }, 1500);
-        }
-        
-        // Simulate receiving messages (for demo purposes)
-        function simulateIncomingMessages() {
-            // Remove empty inbox message if present
-            const emptyMsg = messageList.querySelector('.empty-inbox');
-            if (emptyMsg) {
-                messageList.removeChild(emptyMsg);
-            }
-            
-            // Sample senders and messages
-            const senders = [
-                'Amazon',
-                'Google',
-                'Facebook',
-                'Twitter',
-                'WhatsApp',
-                'Bank',
-                'PayPal',
-                'Uber',
-                'Netflix',
-                'Verification'
-            ];
-            
-            const messages = [
-                'Your Amazon verification code is: 584932',
-                'Google verification code: 739201. Don\'t share this code with anyone.',
-                'Facebook login code: 382910. Enter this code to confirm it\'s you.',
-                'Your Twitter verification code is 647382',
-                'WhatsApp code: 918273. Do not share this code with others.',
-                'Your bank OTP is 546372. Valid for 5 minutes.',
-                'PayPal security code: 102938. Do not share with anyone.',
-                'Your Uber verification code is: 837291',
-                'Netflix security code: 728394. Enter to verify your account.',
-                'Your verification code is 645382'
-            ];
-            
-            // Create 1-3 new messages
-            const numMessages = Math.floor(Math.random() * 3) + 1;
-            
-            for (let i = 0; i < numMessages; i++) {
-                const sender = senders[Math.floor(Math.random() * senders.length)];
-                const message = messages[Math.floor(Math.random() * messages.length)];
-                const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                
-                const messageItem = document.createElement('li');
-                messageItem.className = 'message-item';
-                messageItem.innerHTML = `
-                    <div class="message-header">
-                        <span class="message-sender">${sender}</span>
-                        <span class="message-time">${time}</span>
-                    </div>
-                    <div class="message-subject">SMS Verification Code</div>
-                    <div class="message-preview">${message}</div>
-                    <div class="message-content">${message}</div>
-                `;
-                
-                // Add to top of the list
-                if (messageList.firstChild) {
-                    messageList.insertBefore(messageItem, messageList.firstChild);
-                } else {
-                    messageList.appendChild(messageItem);
-                }
-                
-                // Add click handler to show full message
-                messageItem.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                });
-            }
-            
-            numberStatus.textContent = `${numMessages} new message${numMessages > 1 ? 's' : ''} received!`;
-            numberStatus.style.color = 'var(--success)';
-        }
-        
-        // Populate country dropdown
-        function populateCountryDropdown() {
-            countries.forEach(country => {
-                const countryItem = document.createElement('div');
-                countryItem.className = 'country-item';
-                countryItem.innerHTML = `
-                    <span class="flag-icon flag-icon-${country.code}"></span>
-                    <span>${country.name} (${country.prefix})</span>
-                `;
-                
-                countryItem.addEventListener('click', () => {
-                    selectedCountry = country;
-                    countryName.textContent = country.name;
-                    countryToggle.querySelector('.flag-icon').className = `flag-icon flag-icon-${country.code}`;
-                    countryDropdown.classList.remove('open');
-                    
-                    // If we already have a number, regenerate with new country format
-                    if (numberInput.value) {
-                        generateNumber();
-                    }
-                });
-                
-                countryMenu.appendChild(countryItem);
-            });
-        }
-        
-        // Toggle country dropdown
-        countryToggle.addEventListener('click', () => {
-            countryDropdown.classList.toggle('open');
-        });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!countryDropdown.contains(e.target)) {
-                countryDropdown.classList.remove('open');
-            }
-        });
-        
-        // Event Listeners
-        generateBtn.addEventListener('click', generateNumber);
-        copyBtn.addEventListener('click', copyNumber);
-        refreshBtn.addEventListener('click', checkMessages);
-        inboxRefresh.addEventListener('click', checkMessages);
-        
-        // Initialize
-        window.addEventListener('load', function() {
-            populateCountryDropdown();
-            setTimeout(generateNumber, 500);
-        });
-    </script>
+  </main>
+  <footer>
+    <p>© 2025 Ghostly ID. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const prefixes = {
+      us: '+1',
+      uk: '+44',
+      ca: '+1',
+      au: '+61',
+      pk: '+92',
+      in: '+91'
+    };
+
+    function generatePhone() {
+      const country = document.getElementById('country').value;
+      const prefix = prefixes[country];
+      const number = Math.floor(100000000 + Math.random() * 900000000);
+      const phone = prefix + number;
+      
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      resultDiv.innerHTML = `
+        <p><strong>Generated Number:</strong> ${phone}</p>
+        <button class="copy-btn" onclick="copyNumber('${phone}')">Copy Number</button>
+      `;
+    }
+
+    function copyNumber(number) {
+      navigator.clipboard.writeText(number).then(() => {
+        alert('Phone number copied to clipboard!');
+      });
+    }
+  </script>
 </body>
 </html>
